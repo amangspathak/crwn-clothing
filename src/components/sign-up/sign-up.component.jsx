@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
 import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
@@ -27,6 +27,7 @@ class SignUp extends React.Component {
         
         try {
            const user = await auth.createUserWithEmailAndPassword(email,password);
+           console.log('displayNameww', displayName);
            await createUserProfileDocument(user,{displayName}); 
            this.setState({
             displayName: '',  
@@ -40,7 +41,7 @@ class SignUp extends React.Component {
     }
 
     handelChanged = event => {
-        const {value, name} = event.target;
+        const {name, value} = event.target;
         this.setState({[name]: value});
     }
 
